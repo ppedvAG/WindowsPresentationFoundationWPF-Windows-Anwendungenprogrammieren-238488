@@ -1,102 +1,134 @@
-# WPF - Windows Presentation Foundation
+# CSharp Grundkurs
 
-## M000 | Begrüßung
+Kurs Repository zum Kurs WPF - Windows Presentation Foundation der ppedv AG. Trainer: Lukas Kern (LukasK@ppedv.de).
 
-- [ ] [Slides](M000)
+## M00 | VORSTELLUNG
 
-## M001 | Grundlagen
+- [ ] Begrüßung
+- [ ] Ablauf
+- [ ] Agenda
 
-- [ ] [Slides & Labs](M001)
-- [ ] [Demo](M001/M001_Grundlagen_Demo)
 
-## M002 | Controls
+## M01 | WPF Grundlagen
+- [ ] Was ist WPF?
+- [ ] XAML
+- [ ] XAML + Code Behind
 
-- [ ] [Slides & Labs](M002)
-- [ ] [Demo](M002/M002_Controls_Demo)
-- [ ] [Lab-Lösung](M002/M002_Controls_LabLoesung)
 
-## M003 | Layoutcontainer
+## M02 | Steuerelemente
+- [ ] Anzeigeelemente (TextBlock, Image, ...)
+- [ ] Listenelemente (ComboBox, ListBox, ...)
+- [ ] Interaktive Elemente (Button, Slider, ...)
+- [ ] Fenster öffnen/schließen
+- [ ] MessageBox
+ 
 
-- [ ] [Slides & Labs](M003)
-- [ ] [Demo](M003/M003_Layoutcontainer_Demo)
-- [ ] [Lab-Lösung](M003/M003_Layoutcontainer_LabLoesung)
+## M03 | Layoutcontainer
+- [ ] eindimensionale Arrays 
+- [ ] mehrdimensionale Arrays 
+- [ ] logische Operatoren
+- [ ] if-Abfrage 
 
-## M004 | EventRouting
+## M04 | SCHLEIFEN und ENUMS
+- [ ] while-Schleifen
+- [ ] do-while-Schleife
+- [ ] for-Schleife  
+- [ ] foreach-Schleife  
+- [ ] Enums 
 
-- [ ] [Slides & Labs](M004)
-- [ ] [Demo](M004/M004_EventRouting_Demo)
-- [ ] [Lab-Lösung](M004/M004_EventRouting_LabLoesung)
 
-## M005 | Property-Binding
+## M05 | Funktionen
+- [ ] Funktionen  
+- [ ] Modifier  
+- [ ] Parameter 
+- [ ] optionale Parameter 
+- [ ] params   
+- [ ] out  
+- [ ] Überladung 
 
-- [ ] [Slides & Labs](M005)
-- [ ] [Demo](M005/M005_PropertyBinding_Demo)
-- [ ] [Lab-Lösung](M005/M005_PropertyBinding_LabLoesung)
 
-## M006 | Data-Binding
+## M06 | OOP - NAMESPACES, KLASSEN, FELDER und KAPSELUNGEN
+- [ ] Namespaces 
+- [ ] Klassen  
+- [ ] Felder
+- [ ] Eigenschaften  
+- [ ] Kapselungen 
+- [ ] Konstruktoren 
+- [ ] Objekte 
 
-- [ ] [Slides & Labs](M006)
-- [ ] [Demo](M006/M006_DataBinding_Demo)
-- [ ] [Lab-Lösung](M006/M006_DataBinding_LabLoesung)
 
-## M007 | Resources + Styles
+## M07 | OOP - GARBAGE COLLECTION, STATISCHE MEMBER, WERTE und REFERENZEN
+- [ ] Destruktor 
+- [ ] Garbage Collection
+- [ ] Statische Member
+- [ ] Werte- und Referenztypen
+- [ ] ref 
 
-- [ ] [Slides & Labs](M007)
-- [ ] [Demo](M007/M007_Resources_Styles_Demo)
-- [ ] [Lab-Lösung](M007/M007_ResourcesStyles_LabLoesung)
 
-## M008 | Templates
+## M08 | OOP - VERERBUNG und ZUGRIFFSMODIFIER
+- [ ] Vererbung
+- [ ] base
+- [ ] virtuelle Member   
+- [ ] Überschreibungen verhindern
+- [ ] Zugriffsmodifier 
 
-- [ ] [Slides & Labs](M008)
-- [ ] [Demo](M008/M008_Templates_Demo)
-- [ ] [Lab-Lösung](M008/M008_Templates_LabLoesung)
 
-## M009 | Validation
+## M09 | OOP - POLYMORPHISMUS und TYPEN
+- [ ] Polymorphismus
+- [ ] Typtest "GetType()" & "typeof"  
+- [ ] Typtest "is" 
+- [ ] Member ausblenden 
+- [ ] abstrakte Member und Klassen 
 
-- [ ] [Slides & Labs](M009)
-- [ ] [Demo](M009/M009_Validation_Demo)
-- [ ] [Lab-Lösung](M009/M009_Validation_LabLoesung)
 
-## M010 | Trigger
+## M10 | OOP -INTERFACES
+- [ ] Interfaces  
+- [ ] Interface-Implementierungen  
 
-- [ ] [Slides & Labs](M010)
-- [ ] [Demo](M010/M010_Trigger_Demo)
-- [ ] [Lab-Lösung](M010/M010_Trigger_LabLoesung)
 
-## M011 | UserControls
+## M11 | GENERISCHE LISTEN
+- [ ] Generische Datentypen
+- [ ] List<T>
+- [ ] Stack<T>
+- [ ] Queue<T>
+- [ ] Dictionary<T1, T2>
 
-- [ ] [Slides & Labs](M011)
-- [ ] [Demo](M011/M011_UserControls_Demo)
-- [ ] Das Lab besteht aus zwei Projekten:
-- [ ] [Lab-Lösung 01: UserControl](M011/M011_UserControls_LabLoesung_01)
-- [ ] [Lab-Lösung 02: Implementierung](M011/M011_UserControls_LabLoesung_02)
 
-## M012 | Relative Sources
+## M12 | FEHLERBEHANDLUNG und UNIT-TESTS
+- [ ] try-catch  
+- [ ] eigene Exceptions 
+- [ ] UnitTests
 
-- [ ] [Slides & Labs](M012)
-- [ ] [Demo](M012/M012_RelativeSources_Demo)
-- [ ] [Lab-Lösung](M012/M012_RelativeSources_LabLoesung)
 
-## M013 | Commands
+## M13 | DELEGATES und EVENTS
+- [ ] Action 
+- [ ] Predicate   
+- [ ] Func
+- [ ] anonyme Methoden
+- [ ] EventHandler
 
-- [ ] [Slides & Labs](M013)
-- [ ] [Demo](M013/M013_Commands_Demo)
-- [ ] Lab-Lösung: Besitzt ein gemeinsames Lab mit M014
 
-## M014 | MVVM
+## M14 | GUI und WINDOWS FORMS
+- [ ] Windows Forms
+- [ ] partielle Klassen
+- [ ] WinForms in VS
+- [ ] Eigenschaften und Events
+- [ ] wichtige Controls
+- [ ] MessageBox
+- [ ] Schließen und Öffnen von Forms
 
-- [ ] [Slides & Labs](M014)
-- [ ] [Demo](M014/M014_MVVM_Demo)
-- [ ] [Lab-Lösung](M014/M014_MVVM_LabLoesung)
 
-## M015 | Localisation
+## M15 | DATEIEN und VERZEICHNISSE
+- [ ] Dateien lesen/schreiben 
+- [ ] Dateidialog
+- [ ] JSON
+- [ ] XML
 
-- [ ] [Slides & Labs](M015)
-- [ ] [Demo](M015/M015_Localisation_Demo)
-- [ ] [Lab-Lösung](M015/M015_Localisation_LabLoesung)
 
-## M016 | Animations
-
-- [ ] [Slides & Labs](M016)
-- [ ] [Demo](M016/M016_Animations_Demo)
-- [ ] [Lab-Lösung](M016/M016_Animations_LabLoesung)
+## M16 | WEITERE THEMEN
+- [ ] Operatoren überladen
+- [ ] IEnumerable
+- [ ] Indexer
+- [ ] Erweiterungsmethoden
+- [ ] LINQ
+- [ ] Timer
