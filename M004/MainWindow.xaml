@@ -1,0 +1,98 @@
+﻿<Window x:Class="M004.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M004"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300"
+		WindowStartupLocation="CenterScreen"
+		FontSize="40">
+	<StackPanel>
+		<!--Resources-->
+		<!--Ermöglicht, das Einbinden von statischen Objekten in das XAML File-->
+		<StackPanel.Resources>
+			<local:DoubleToMarginTopConverter x:Key="DM"/>
+			<BooleanToVisibilityConverter x:Key="BV"/>
+			<!--Hier wird der Converter eingebunden und mit einem Key versehen-->
+		</StackPanel.Resources>
+		
+		
+		<!--Binding-->
+		<!--Ermöglicht, die Verbindung von Zwei DependencyProperties aneinander-->
+		
+		<!--Dependency Property-->
+		<!--Erweiterung von einem normalen C# Property, welches in WPF verwendet wird um Bindings zu ermöglichen-->
+		
+		<!--Slider.Value an TextBlock.Text binden-->
+		<!--WICHTIG: Das Binding muss am Ziel angebracht werden, d.h. dort wo der Wert empfangen werden soll-->
+		<!--Wenn sich jetzt der Value des Sliders ändert, wird auch der TextBlock angepasst-->
+		
+		<!--Interner Slider Code -> RangeBase -> public static readonly DependencyProperty ValueProperty;-->
+		<Slider Name="BindingSlider"/>
+
+		<!--Interner TextBlock Code -> public static readonly DependencyProperty TextProperty;-->
+		<TextBlock>
+			<TextBlock.Text>
+				<Binding ElementName="BindingSlider" Path="Value"/>
+			</TextBlock.Text>
+		</TextBlock>
+
+		<!--Kurzform von darüber aber per Markup Extension-->
+		<TextBlock Text="{Binding ElementName=BindingSlider, Path=Value}"/>
+
+		<!--Binding Mode-->
+		<!--Gibt die Richtung des Bindings an-->
+		<!--Standard: TwoWay-->
+		<!--OneWay, OneWayToSource: Nur in eine Richtung (Quelle -> Ziel oder umgekehrt)-->
+		<Slider Value="{Binding ElementName=BindingSlider, Path=Value, Mode=OneWay}"/>
+
+		<!--Wenn der User eine Eingabe tätigt, soll diese in dem TextBlock darunter erscheinen-->
+		<!--UpdateSourceTrigger-->
+		<!--Standard: PropertyChanged-->
+		<!--LostFocus: Wenn das Element verlassen wird-->
+		<!--Explicit: Wenn über den Code Behind ein Update veranlasst wird-->
+		<TextBox Name="Eingabe"/>
+		<TextBlock Text="{Binding ElementName=Eingabe, Path=Text, UpdateSourceTrigger=Explicit, StringFormat='Eingabe: {0}'}"/>
+		<Button Click="Button_Click" Content="Test"/>
+		<!--StringFormat: Erlaubt Anpassungen an den Text nach dem empfangen des Wertes zu machen-->
+		<!--Mit {0} kann der per Binding empfangene Wert verwendet werden-->
+		<!--WICHTIG: Mit einzelnen Hochkomma ('...') das StringFormat definieren-->
+		
+		<!--Converter-->
+		<!--Den Wert der beim Binding auf dem Ziel ankommt, bevor er dort ankommt, anpassen-->
+		<!--z.B. Werte sind nicht kompatibel -> Slider und Margin Top-->
+		<Slider Name="MarginTopSlider" Maximum="50"/>
+		<Button Margin="{Binding ElementName=MarginTopSlider, Path=Value, Converter={StaticResource DM}}" Content="Test1"/>
+		<!--Resources: siehe oben (Zeile 14)-->
+		<!--Hier kann per StaticResource mithilfe des Keys auf den Converter zugegriffen werden-->
+		
+		<!--Weiteres Beispiel: CheckBox und Visibility-->
+		<!--IsChecked: bool, Visibility: Visibility (enum) -> nicht kompatibel-->
+		<CheckBox Content="Button sichtbar" Name="CB"/>
+		<Button Content="Hallo!" Visibility="{Binding ElementName=CB, Path=IsChecked, Converter={StaticResource BV}}"/>
+
+		<!--MultiBinding-->
+		<!--Mehrere Quellwerte zu einem Zielwert zu binden-->
+		<!--z.B. Vier Slider für Margin -> Margin-->
+		<!--Benötigt immer einen Converter (MultiValueConverter)-->
+		<Slider Name="MarginLeft" Maximum="50"/>
+		<Slider Name="MarginTop" Maximum="50"/>
+		<Slider Name="MarginRight" Maximum="50"/>
+		<Slider Name="MarginBottom" Maximum="50"/>
+		<Button Content="Test1">
+			<Button.Margin>
+				<MultiBinding>
+					<Binding ElementName="MarginLeft" Path="Value"/>
+					<Binding ElementName="MarginTop" Path="Value"/>
+					<Binding ElementName="MarginRight" Path="Value"/>
+					<Binding ElementName="MarginBottom" Path="Value"/>
+					<MultiBinding.Converter>
+						<local:FourValueToMarginConverter/>
+					</MultiBinding.Converter>
+				</MultiBinding>
+			</Button.Margin>
+		</Button>
+		<DatePicker/>
+	</StackPanel>
+</Window>
