@@ -1,0 +1,60 @@
+﻿<Window x:Class="M002.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M002"
+        Title="MainWindow" MinHeight="450" Width="300"
+		WindowStartupLocation="CenterScreen"
+		SizeToContent="Height"
+		Topmost="True">
+	<StackPanel>
+		<TextBlock Text="Ein Text"
+				   Foreground="Black"
+				   Background="Aqua"
+				   Name="TB"/>
+		<Button Click="Button_Click"
+				IsEnabled="True"
+				Content="Ein Button"/>
+		<Image Source="C:\Users\lk3\source\repos\WPF_2024_02_26\M002\ppedv-Logo.png"/>
+		<TextBox AcceptsReturn="True"
+				 AcceptsTab="True"/>
+		<ComboBox>
+			<ComboBoxItem Content="Item1"/>
+			<ComboBoxItem Content="Item2"/>
+			<ComboBoxItem Content="Item3"/>
+			<ComboBoxItem Content="Item4"/>
+		</ComboBox>
+		<ComboBox Name="CB"/> <!--ItemsSource im Backend-->
+		<CheckBox Content="Eine CheckBox"
+				  Checked="CheckBox_Checked"
+				  Unchecked="CheckBox_Unchecked"/>
+		<ToggleButton Content="Bleibt"/>
+		<RadioButton GroupName="RB1"/>
+		<RadioButton GroupName="RB1"/>
+		<RadioButton GroupName="RB1"/>
+		<Slider Minimum="0"
+				Maximum="100"
+				Value="50"
+				ValueChanged="Slider_ValueChanged"
+				
+				TickFrequency="1"
+				IsSnapToTickEnabled="True"
+				TickPlacement="Both"
+				Foreground="Aqua"/>
+		<!--TickFrequency + IsSnapToTickEnabled = Ganzzahliger Slider-->
+		<ProgressBar Height="30"
+					 Value="50"
+					 Foreground="Violet"
+					 IsIndeterminate="True"/>
+		<Menu>
+			<MenuItem Header="Datei">
+				<MenuItem Header="Unterpunkt 1">
+					<MenuItem Header="Tiefster Punkt"
+							  Click="MenuItem_Click"/>
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+		<Separator/>
+		<ListBox Name="LB"
+				 SelectionMode="Extended"/>
+	</StackPanel>
+</Window>
