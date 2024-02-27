@@ -1,0 +1,29 @@
+﻿<Application x:Class="M006.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:M006"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+		<!--ResourceDictionary-->
+		<!--Ermöglicht, das externe anlegen von Resourcen-->
+		
+		<!--MergedDictionaries-->
+		<!--Ermöglicht, das Einbinden von mehreren externen Dictionaries-->
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="ExterneResourcen.xaml">
+				</ResourceDictionary>
+				<!--<ResourceDictionary Source="ExterneResourcen2.xaml">
+
+				</ResourceDictionary>-->
+				<ResourceDictionary>
+					<!--Styles ohne Key sind globale Styles, d.h. sie beziehen sich auf alle Elemente, die selbst keinen Style definiert haben-->
+					<Style TargetType="Button">
+						<Setter Property="Background" Value="Orange"/>
+						<Setter Property="FontSize" Value="20"/>
+					</Style>
+				</ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+    </Application.Resources>
+</Application>
