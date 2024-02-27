@@ -1,0 +1,45 @@
+﻿<Window x:Class="M005.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M005"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="800"
+		WindowStartupLocation="CenterScreen">
+	
+	<!--DataContext mit ausgelagertem XAML Objekt-->
+	<!--Essentiell für MVVM-->
+	<!--<Window.DataContext>
+		<local:MainWindow/>
+	</Window.DataContext>-->
+	
+    <StackPanel>
+		<!--DataBinding-->
+		<!--Binding zwischen einem DependencyProperty (UI) und mit einer Backendvariable statt einem DependencyProperty-->
+		
+		<!--Zwei wichtige Dinge-->
+		<!--DataContext-->
+		<!--INotifyPropertyChanged-->
+		
+		<!--DataContext-->
+		<!--Jedes UI Element hat einen DataContext-->
+		<!--Hier wird das Objekt abgelegt, welches gebunden werden soll-->
+		
+		<!--Drei Möglichkeiten um den DataContext zu setzen: -->
+		<!--<Window.DataContext><local:...></Window.DataContext>-->
+		<!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
+		<!--this.DataContext = this; im MainWindow Konstruktor-->
+	
+		<!--Die Variable p soll jetzt in drei TextBlöcken repräsentiert werden-->
+		<TextBlock Text="{Binding Path=p.Vorname}"/> <!--Langform mit Path=...-->
+		<TextBlock Text="{Binding p.Nachname}"/> <!--Selbiges wie darüber-->
+		<TextBlock Text="{Binding p.Alter}"/>
+
+		<!--INotifyPropertyChanged-->
+		<!--Stellt einen Benachrichtigungsmechanismus bereit, welcher verwendet werden kann, um UI Updates zu machen-->
+		<Button Content="Alter++" Click="Button_Click"/>
+
+		<TextBlock Text="{Binding x.Value}"/>
+
+		<ListBox ItemsSource="{Binding Zahlen}"/>
+	</StackPanel>
+</Window>

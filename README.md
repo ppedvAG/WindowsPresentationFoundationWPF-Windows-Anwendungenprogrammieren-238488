@@ -24,17 +24,18 @@ Kurs Repository zum Kurs WPF - Windows Presentation Foundation der ppedv AG. Tra
  
 
 ## M03 | Layoutcontainer
-- [ ] eindimensionale Arrays 
-- [ ] mehrdimensionale Arrays 
-- [ ] logische Operatoren
-- [ ] if-Abfrage 
+- [ ] Width, Height
+- [ ] Margin, Padding
+- [ ] Alignment
+- [ ] Panels
+- [ ] Weitere Container
 
-## M04 | SCHLEIFEN und ENUMS
-- [ ] while-Schleifen
-- [ ] do-while-Schleife
-- [ ] for-Schleife  
-- [ ] foreach-Schleife  
-- [ ] Enums 
+## M04 | Propertybinding
+- [ ] Binding zwischen zwei UI-Komponenten
+- [ ] Markup Extension
+- [ ] Konfiguration
+- [ ] Converter  
+- [ ] MultiBinding + MultiConverter
 
 
 ## M05 | Funktionen
