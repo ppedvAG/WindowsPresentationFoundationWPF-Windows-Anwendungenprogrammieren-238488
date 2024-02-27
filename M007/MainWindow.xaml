@@ -1,0 +1,27 @@
+﻿<Window x:Class="M007.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M007"
+		xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+		xmlns:net="clr-namespace:System.Net;assembly=System.Net"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="300"
+		WindowStartupLocation="CenterScreen">
+    <StackPanel>
+		<!--Markup Extensions-->
+		<!--Ermöglichen, eigene Syntax in den { } zu machen-->
+		<!--Beispiele für MarkupExtensions: Binding, StaticResource, ...-->
+		
+		<!--Problem: Enum an List Komponente anbinden (z.B. ComboBox)-->
+		<TextBlock Text="Wähle einen Wochentag aus: "/>
+		<ComboBox ItemsSource="{Binding Wochentage}"/> <!--Mit Backend Variable, Problem: In großen Projekte gibt es irgendwann 100e Enum Variablen-->
+		<ComboBox Name="CB"/> <!--Mit Backend Variable, Problem: In großen Projekte gibt es irgendwann 100e Enum Variablen-->
+
+		<!--Sobald diese ComboBox diese ItemsSource laden möchte, wird die ProvideValue ausgeführt-->
+		<!--Der Rückgabewert von dieser Methode wird in ItemsSource eingefügt-->
+		<!--<ComboBox ItemsSource="{local:Enum}"/> --><!--Kein Konstruktor-->
+		<ComboBox ItemsSource="{local:Enum {x:Type sys:DayOfWeek}}"/> <!--Konstruktor mit einem Parameter-->
+		<ComboBox ItemsSource="{local:Enum {x:Type net:HttpStatusCode}}"/> <!--Konstruktor mit einem Parameter-->
+		<ComboBox ItemsSource="{local:Enum EnumType=sys:DayOfWeek}"/> <!--Statt Konstruktor mit Property-->
+	</StackPanel>
+</Window>
