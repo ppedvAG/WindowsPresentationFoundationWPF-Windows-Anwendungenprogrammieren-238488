@@ -5,10 +5,6 @@ namespace M008;
 
 public class ColorsExtension : MarkupExtension
 {
-	public Type OriginalType { get; set; }
-
-	public Type WrapperType { get; set; }
-
 	public override object ProvideValue(IServiceProvider serviceProvider)
 	{
 		//Colors hat nur Properties: Klasse voller Properties -> Colors[]/List<Color>
@@ -26,10 +22,6 @@ public class ColorsExtension : MarkupExtension
 		return typeof(Colors).GetProperties()
 			.Select(e => new NamedColor(e.Name, (Color) e.GetValue(null)))
 			.ToList();
-
-		//return OriginalType.GetType().GetProperties()
-		//	.Select(e => Activator.CreateInstance(WrapperType, e))
-		//	.ToList();
 	}
 }
 

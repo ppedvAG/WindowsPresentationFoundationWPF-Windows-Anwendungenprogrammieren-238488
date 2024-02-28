@@ -2,8 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:M008"
-		xmlns:coll="clr-namespace:System.Collections.Generic;assembly=System.Runtime"
-        Title="MainWindow" Height="450" Width="300"
+		Title="MainWindow" Height="450" Width="300"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		WindowStartupLocation="CenterScreen">
 	<Window.Resources>
@@ -33,7 +32,7 @@
 		<!--Über ein DataTemplate können die Bindings an das Element angepasst werden-->
 		<!--Das ItemsPanelTemplate ist effektiv ein ControlTemplate, aber für die Items einer Komponente anstatt für die Komponente selbst-->
 
-		<Button Content="Test" Margin="10" Width="100">
+		<Button Content="Test" Margin="10" Width="100"> <!--Der Button selbst hat eine Breite von 100, über TemplateBinding auf der Border kann dies behoben werden-->
 			<Button.Template>
 				<ControlTemplate TargetType="Button"> <!--WICHTIG: Wie bei Styles hier den TargetType angeben-->
 					<!--Button hat jetzt kein Template mehr -> kein Aussehen mehr-->
@@ -95,6 +94,7 @@
 					<StackPanel Orientation="Horizontal">
 						<Rectangle Width="20" Height="20" Stroke="Black" Margin="2" Fill="{Binding ColorBrush}"/>
 						<TextBlock Text="{Binding Name}" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14"/>
+						<TextBlock Text="{Binding Color, StringFormat='({0})'}" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14"/>
 					</StackPanel>
 				</DataTemplate>
 			</ComboBox.ItemTemplate>
