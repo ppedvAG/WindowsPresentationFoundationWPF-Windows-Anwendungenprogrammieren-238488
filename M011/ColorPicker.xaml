@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="M011.ColorPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:M011"
+			 Name="Self">
+			 <!--DataContext="{Binding RelativeSource={RelativeSource Self}}" /// Nicht möglich, weil der DataContext vom unliegenden Window überschrieben wird-->
+	<StackPanel>
+		<local:ColorSlider Margin="0, 0, 0, 0" ColorText="R: " SliderColor="Red" SliderValue="{Binding ElementName=Self, Path=SliderRValue, Mode=TwoWay}"
+						   PickedColorChanged="ColorSlider_PickedColorChanged"/>
+		<local:ColorSlider Margin="0, 5, 0, 0" ColorText="G: " SliderColor="Green" SliderValue="{Binding ElementName=Self, Path=SliderGValue, Mode=TwoWay}"/>
+		<local:ColorSlider Margin="0, 5, 0, 0" ColorText="B: " SliderColor="Blue" SliderValue="{Binding ElementName=Self, Path=SliderBValue, Mode=TwoWay}"/>
+		<local:ColorSlider Margin="0, 5, 0, 0" ColorText="A: " SliderColor="Black" SliderValue="{Binding ElementName=Self, Path=SliderAValue, Mode=TwoWay}"/>
+		<TextBlock Text="{Binding ElementName=Rect, Path=Fill, StringFormat='Picked color: {0}'}"
+				   TextAlignment="Center"/>
+		<Rectangle Width="100" Height="100" Name="Rect" Stroke="Black" StrokeThickness="2">
+			<Rectangle.Fill>
+				<MultiBinding>
+					<MultiBinding.Bindings>
+						<Binding ElementName="Self" Path="SliderRValue"/>
+						<Binding ElementName="Self" Path="SliderGValue"/>
+						<Binding ElementName="Self" Path="SliderBValue"/>
+						<Binding ElementName="Self" Path="SliderAValue"/>
+					</MultiBinding.Bindings>
+					<MultiBinding.Converter>
+						<local:FourValueToBrushConverter/>
+					</MultiBinding.Converter>
+				</MultiBinding>
+			</Rectangle.Fill>
+		</Rectangle>
+	</StackPanel>
+</UserControl>
