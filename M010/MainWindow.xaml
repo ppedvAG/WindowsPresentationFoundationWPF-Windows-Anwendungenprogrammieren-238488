@@ -1,0 +1,103 @@
+﻿<Window x:Class="M010.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M010"
+        Title="MainWindow" Height="450" Width="800"
+		WindowStartupLocation="CenterScreen">
+	<StackPanel>
+		<!--Trigger-->
+		<!--Effektiv Styles mit Bedingungen-->
+		<!--Tun etwas in der GUI, wenn bestimmte Bedingungen erfüllt sind-->
+
+		<!--Zwei verschiedene Trigger-->
+		<!--(normaler) Trigger-->
+		<!--DataTrigger-->
+		<!--Zu diesen beiden Triggern gibt es auch noch die MultiTrigger/MultiDataTrigger Variante-->
+
+		<!--Wenn der User über die ComboBox hovered, soll diese 50px hoch sein-->
+		<ComboBox>
+			<ComboBox.Style>
+				<Style TargetType="ComboBox">
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Height" Value="50"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</ComboBox.Style>
+		</ComboBox>
+
+		<!--Wenn der User über den TextBlock hovered, soll dieser wie ein Link hervorgehoben werden (Unterstrichen und Hellblau)-->
+		<TextBlock Text="Klick mich!">
+			<TextBlock.Style>
+				<Style TargetType="TextBlock">
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground" Value="LightBlue"/>
+							<Setter Property="TextDecorations" Value="Underline"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</TextBlock.Style>
+		</TextBlock>
+
+		<!--Wenn in der ComboBox ein bestimmtes Item ausgewählt ist, soll ein Button aktiviert werden-->
+		<ComboBox Name="CB" SelectedValuePath=".">
+			<ComboBoxItem Content="Item1"/>
+			<ComboBoxItem Content="Item2"/>
+			<ComboBoxItem Content="Item3"/>
+			<ComboBoxItem Content="Item4"/>
+		</ComboBox>
+
+		<Button Content="Item4 muss gewählt sein" IsEnabled="False">
+			<!--Wenn hier der Button disabled wird, wird auch der Trigger disabled-->
+			<Button.Style>
+				<Style TargetType="Button">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding ElementName=CB, Path=SelectedIndex}" Value="3">
+							<Setter Property="IsEnabled" Value="True"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+		</Button>
+
+		<Button Content="Item4 muss gewählt sein">
+			<Button.Style>
+				<Style TargetType="Button">
+					<!--Wenn IsEnabled im Style gesetzt wird, wird der Trigger wie erwartet angewandt-->
+					<Setter Property="IsEnabled" Value="False"/>
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding ElementName=CB, Path=SelectedIndex}" Value="3">
+							<Setter Property="IsEnabled" Value="True"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+		</Button>
+
+		<!--Wenn drei CheckBoxen gecheckt sind, soll ein Button aktiviert werden-->
+		<CheckBox x:Name="CB1" Content="Box 1"/>
+		<CheckBox x:Name="CB2" Content="Box 2"/>
+		<CheckBox x:Name="CB3" Content="Box 3"/>
+		<Button Content="Alle CheckBoxen müssen gecheckt sein">
+			<Button.Style>
+				<Style TargetType="Button">
+					<Setter Property="IsEnabled" Value="False"/>
+					<Style.Triggers>
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding ElementName=CB1, Path=IsChecked}" Value="True"/>
+								<Condition Binding="{Binding ElementName=CB2, Path=IsChecked}" Value="True"/>
+								<Condition Binding="{Binding ElementName=CB3, Path=IsChecked}" Value="True"/>
+							</MultiDataTrigger.Conditions>
+							<MultiDataTrigger.Setters>
+								<Setter Property="IsEnabled" Value="True"/>
+							</MultiDataTrigger.Setters>
+						</MultiDataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+		</Button>
+	</StackPanel>
+</Window>
