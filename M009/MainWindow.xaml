@@ -1,0 +1,78 @@
+﻿<Window x:Class="M009.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M009"
+        xmlns:valid="clr-namespace:M009.Validation"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+		WindowStartupLocation="CenterScreen"
+        Title="MainWindow" 
+		Height="450"
+		Width="300">
+	<Window.Resources>
+		<ControlTemplate x:Key="ET">
+			<StackPanel>
+				<Border BorderBrush="Aqua" BorderThickness="5">
+					<AdornedElementPlaceholder x:Name="AEP"/>
+					<!--AdornedElementPlaceholder: Bezeichnet das Element, welches gerade Validiert wird-->
+				</Border>
+				<Popup IsOpen="True" Placement="Bottom" PopupAnimation="Slide">
+					<TextBlock Text="{Binding ElementName=AEP, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+							   Background="Red"
+							   Foreground="White"/>
+				</Popup>
+			</StackPanel>
+		</ControlTemplate>
+
+		<valid:ValidationRuleCollection x:Key="Rules">
+			<valid:LetterValidation ValidatesOnTargetUpdated="True"/>
+			<!--ValidatesOnTargetUpdated: Validiert auch, wenn Werte vom Backend ins Frontend kommen-->
+			<valid:LengthValidation ValidatesOnTargetUpdated="True"/>
+		</valid:ValidationRuleCollection>
+	</Window.Resources>
+	<StackPanel>
+		<!--Validation-->
+		<!--Prüfung von Benutzereingaben, bevor diese in die Backend Klasse geschrieben werden-->
+		
+		<!--Drei Möglichkeiten zur Überprüfung: -->
+		<!--ValidationRule(s)-->
+		<!--ValidateOnException-->
+		<!--ValidateOnDataError-->
+		<TextBlock Text="Vorname: "/>
+		<TextBox Validation.ErrorTemplate="{StaticResource ET}">
+			<TextBox.Text>
+				<Binding Path="p.FirstName" UpdateSourceTrigger="PropertyChanged">
+					<Binding.ValidationRules>
+						<valid:LetterValidation/>
+						<valid:LengthValidation/>
+					</Binding.ValidationRules>
+				</Binding>
+			</TextBox.Text>
+		</TextBox>
+		<!--Validierung wird durchgeführt, wenn das Binding ausgeführt wird-->
+		<Button Content="Test"/>
+		
+		<!--ErrorTemplate: Ermöglicht, ein ControlTemplate zu definieren, welches bei einem Validierungsfehler angezeigt wird-->
+		<!--ErrorTemplates werden generell als Resource angelegt und dann bei den entsprechenden Elementen eingebunden-->
+		<!--WICHTIG: ETs werden beim Element selbst eingebunden mittels Validation.ErrorTemplate anstatt beim Binding-->
+			
+		<!--ValidationRules per Markup Binding einbinden mittels eigener MarkupExtension-->
+		<TextBlock Text="Nachname: "/>
+		<TextBox Text="{valid:ValidationRuleBinding {Binding p.LastName}, {StaticResource Rules}}"
+				 Validation.ErrorTemplate="{StaticResource ET}"/>
+			
+		<!--ValidateOnException-->
+		<!--Exceptions die im Backend geworfen werden-->
+		<!--Die Nachricht der Exceptions wird dann im ErrorTemplate angezeigt-->
+		<TextBlock Text="Email: "/>
+		<TextBox Text="{Binding p.Email, ValidatesOnExceptions=True}"
+				 Validation.ErrorTemplate="{StaticResource ET}"/>
+			
+		<!--ValidateOnDataErrors-->
+		<!--Validiert Felder mithilfe des IDataErrorInfo Interfaces-->
+		<!--Dieses Interface erzeugt einen Indexer mit einem string Parameter-->
+		<!--In diesem Indexer kann anhand von dem string Parameter mit einem Switch die Validierung durchgeführt werden-->
+		<TextBlock Text="Email: "/>
+		<TextBox Text="{Binding p.Email, ValidatesOnDataErrors=True}"
+				 Validation.ErrorTemplate="{StaticResource ET}"/>
+	</StackPanel>
+</Window>
