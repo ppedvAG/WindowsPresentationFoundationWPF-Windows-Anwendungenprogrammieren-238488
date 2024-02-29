@@ -1,0 +1,53 @@
+﻿<Window x:Class="M012.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M012"
+		WindowStartupLocation="CenterScreen"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow"
+		Height="450"
+		Width="800">
+    <StackPanel>
+		<!--RelativeSource-->
+		<!--Wenn zur Laufzeit nicht bekannt ist, was denn die Quelle eines Bindings ist-->
+		
+		<!--Vier verschiedene Modi-->
+		<!--Self, TemplateBinding, FindAncestor, PreviousData-->
+
+		<!--Self: Bindung an das Element selbst-->
+		<!--Nützlich vorallem bei Window.DataContext-->
+		<Slider Name="QSlider" Maximum="500"/>
+		<Rectangle Width="{Binding ElementName=QSlider, Path=Value}"
+				   Height="{Binding RelativeSource={RelativeSource Self}, Path=Width}"
+				   Fill="Green"/>
+		
+		<!--TemplatedParent/TemplateBinding-->
+		<Button>
+			<Button.Template>
+				<ControlTemplate>
+					<Border Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height}"
+							Width="{TemplateBinding Width}"/> <!--Selbiges wie oben, aber kürzer-->
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+			
+		<!--FindAncestor-->
+		<!--Ermöglicht, das Suchen eines Parents mit einem gegebenen Typen mit einer bestimmten Höhe in der UI-Element Hierarchie-->
+		<Grid Background="Aqua" Height="200">
+			<Grid Background="Orange" Height="100">
+				<Grid Background="LightGreen" Height="50">
+					<Button Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=3}, Path=Background}"
+							Content="FindAncestor"/>
+				</Grid>
+			</Grid>
+		</Grid>
+			
+		<!--PreviousData-->
+		<!--Passe das derzeitige Element, an das vorherige Element innerhalb einer Liste an-->
+		<ListBox>
+			<ListBoxItem Content="LB1" Background="Orange"/>
+			<ListBoxItem Content="LB2" Background="{Binding RelativeSource={RelativeSource Mode=PreviousData}, Path=Background}"/>
+			<ListBoxItem Content="LB3" Background="{Binding RelativeSource={RelativeSource Mode=PreviousData}, Path=Background}"/>
+		</ListBox>
+	</StackPanel>
+</Window>

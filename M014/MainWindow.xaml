@@ -1,0 +1,19 @@
+﻿<Window x:Class="M014.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M014"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow"
+		Height="450"
+		Width="800"
+		WindowStartupLocation="CenterScreen">
+    <DockPanel Margin="5">
+		<StackPanel DockPanel.Dock="Left" Width="200" Margin="0, 0, 2.5, 0">
+			<TextBlock Text="Tabelle auswählen: "/>
+			<ComboBox ItemsSource="{Binding TableNames.Value}" SelectionChanged="ComboBox_SelectionChanged"/>
+		</StackPanel>
+		<DataGrid DockPanel.Dock="Right" ItemsSource="{Binding CurrentTable.Value}" Margin="2.5, 0, 0, 0">
+			
+		</DataGrid>
+    </DockPanel>
+</Window>

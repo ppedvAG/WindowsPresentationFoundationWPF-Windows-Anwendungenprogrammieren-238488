@@ -1,0 +1,41 @@
+﻿<Window x:Class="M018.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:M018"
+        xmlns:vm="clr-namespace:M018.ViewModel"
+		Title="MainWindow" Height="450" Width="300"
+		WindowStartupLocation="CenterScreen">
+	<Window.DataContext>
+		<vm:MainWindowVM/>
+	</Window.DataContext>
+	
+	<Window.Resources>
+		<local:PathExpander x:Key="PE"/>
+		<BooleanToVisibilityConverter x:Key="BV" />
+		<TextBlock Text="Dateiname" x:Key="DN"/>
+		<TextBlock Text="Inhalt" x:Key="I"/>
+	</Window.Resources>
+	
+	<StackPanel>
+		<ComboBox ItemsSource="{Binding RootPath, Converter={StaticResource PE}}"
+				  Name="Root"/>
+		<ComboBox ItemsSource="{Binding ElementName=Root, Path=SelectedItem, Converter={StaticResource PE}}"
+				  Name="Below"/>
+		<ComboBox ItemsSource="{Binding ElementName=Below, Path=SelectedItem, Converter={StaticResource PE}, ConverterParameter=1}"/>
+
+		<CheckBox Content="Andere Ansicht" Name="CB"/>
+		
+		<ContentPresenter>
+			<ContentPresenter.Style>
+				<Style TargetType="ContentPresenter">
+					<Setter Property="Content" Value="{StaticResource I}"/>
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding ElementName=CB, Path=IsChecked}" Value="True">
+							<Setter Property="Content" Value="{StaticResource DN}"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</ContentPresenter.Style>
+		</ContentPresenter>
+	</StackPanel>
+</Window>
