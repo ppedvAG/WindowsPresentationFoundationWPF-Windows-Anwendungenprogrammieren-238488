@@ -88,6 +88,6 @@ public partial class ColorPicker : UserControl
 
 	private void ColorSlider_PickedColorChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 	{
-
+		TB.Text = "Value: " + e.NewValue;
 	}
 }

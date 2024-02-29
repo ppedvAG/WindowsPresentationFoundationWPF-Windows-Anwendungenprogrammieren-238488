@@ -27,5 +27,6 @@
 				</MultiBinding>
 			</Rectangle.Fill>
 		</Rectangle>
+		<TextBlock x:Name="TB"/>
 	</StackPanel>
 </UserControl>

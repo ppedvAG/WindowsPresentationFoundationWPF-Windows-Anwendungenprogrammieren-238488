@@ -53,6 +53,8 @@ public partial class ColorSlider : UserControl
 		DependencyProperty.Register("SliderColor", typeof(Brush), typeof(ColorSlider), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
 
+
+
 	//Events weitergeben, wie DP, aber mit Events
 	public event RoutedPropertyChangedEventHandler<double> PickedColorChanged
 	{
@@ -60,6 +62,14 @@ public partial class ColorSlider : UserControl
 		remove { RemoveHandler(PickedColorChangedEvent, value); }
 	}
 
+	/// <summary>
+	/// Event Routing
+	/// Drei Optionen: Bubbling, Tunneling, Direct
+	/// Wenn ein Event gefeuert wird, hat dieses immer eine Routing Strategy
+	/// Bubbling: Von unten nach oben
+	/// Tunneling: Von oben nach unten
+	/// Direct: Umgeht den Baum komplett
+	/// </summary>
 	public static readonly RoutedEvent PickedColorChangedEvent =
 		EventManager.RegisterRoutedEvent
 		(
@@ -69,4 +79,5 @@ public partial class ColorSlider : UserControl
 			typeof(ColorSlider)
 		);
 
+	private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) => RaiseEvent(e);
 }

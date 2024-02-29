@@ -16,8 +16,28 @@ public partial class MainWindow : Window
 
 	public MainWindow() => InitializeComponent();
 
-	private void Button_Click(object sender, RoutedEventArgs e)
-	{
-		MessageBox.Show(p.Lieblingsfarbe.ToString());
-	}
+	#region EventRouting
+	//KeyDown ist ein Bubbling Event (von innen nach außen)
+	private void Window_KeyDown(object sender, KeyEventArgs e) => Title += "W";
+
+	private void StackPanel_KeyDown(object sender, KeyEventArgs e) => Title += "S";
+
+	private void Button_KeyDown(object sender, KeyEventArgs e) => Title += "B";
+
+
+	//Click ist ein Bubbling Event (von innen nach außen)
+	private void Window_Click(object sender, RoutedEventArgs e) => Title += "W";
+
+	private void StackPanel_Click(object sender, RoutedEventArgs e) => Title += "S";
+
+	//MessageBox.Show(p.Lieblingsfarbe.ToString());
+	private void Button_Click(object sender, RoutedEventArgs e) => Title += "B";
+
+	//MouseDown ist ein Bubbling Event (von innen nach außen)
+	private void Window_MouseDown(object sender, MouseButtonEventArgs e) => Title += "W";
+
+	private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e) => Title += "S";
+
+	private void Button_MouseDown(object sender, MouseButtonEventArgs e) => Title += "B";
+	#endregion
 }

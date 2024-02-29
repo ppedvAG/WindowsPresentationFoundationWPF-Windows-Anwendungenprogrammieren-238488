@@ -4,13 +4,16 @@
         xmlns:local="clr-namespace:M011"
         Title="MainWindow" Height="450" Width="800"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
-		WindowStartupLocation="CenterScreen">
-    <StackPanel>
+		WindowStartupLocation="CenterScreen"
+		KeyDown="Window_KeyDown"
+		MouseDown="Window_MouseDown"
+		ButtonBase.Click="Window_Click">
+    <StackPanel KeyDown="StackPanel_KeyDown" ButtonBase.Click="StackPanel_Click" MouseDown="StackPanel_MouseDown">
 		<local:ColorPicker Margin="5"
 						   PickedColor="{Binding p.Lieblingsfarbe, Mode=TwoWay}">
 			<!--<Color A="12" R="46" G="57" B="23"/>-->
 			<!--Diese Color wird per [ContentProperty] auf dem UC in PickedColor gelegt-->
 		</local:ColorPicker>
-		<Button Click="Button_Click"/>
+		<Button Click="Button_Click" KeyDown="Button_KeyDown" MouseDown="Button_MouseDown"/>
 	</StackPanel>
 </Window>
