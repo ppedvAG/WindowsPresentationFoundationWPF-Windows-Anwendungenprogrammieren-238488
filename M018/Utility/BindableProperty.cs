@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace M018;
+namespace M018.Utility;
 
 public class BindableProperty<T> : INotifyPropertyChanged
 {

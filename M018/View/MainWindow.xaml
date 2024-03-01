@@ -5,6 +5,10 @@
         xmlns:vm="clr-namespace:M018.ViewModel"
 		Title="MainWindow" Height="450" Width="300"
 		WindowStartupLocation="CenterScreen">
+	<Window.InputBindings>
+		<KeyBinding Key="F1" Command="{Binding HelpCommand}" CommandParameter="1"/>
+	</Window.InputBindings>
+	
 	<Window.DataContext>
 		<vm:MainWindowVM/>
 	</Window.DataContext>
